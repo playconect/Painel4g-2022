@@ -289,7 +289,7 @@ ln -s /usr/share/phpmyadmin/ /var/www/html > /dev/null 2>&1
 chmod 777 -R /var/www/html > /dev/null 2>&1
 sleep 2
 if [[ -e "/var/www/html/pass.php" ]]; then
-sed -i "s;1020;$senha;g" /var/www/html/pass.php > /dev/null 2>&1
+sed -i "s;$pwdroot;$senha;g" /var/www/html/pass.php > /dev/null 2>&1
 fi
 ##################################
 clear
