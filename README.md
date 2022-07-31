@@ -1,4 +1,4 @@
-## ⚡ Painel WEB - PLAY CONECT ⚡
+## ⚡ Painel WEB - PLAY CONECT 4G ⚡
 
 ## Modo de instalação - Manual
 
@@ -18,11 +18,6 @@ Armazenamento: 20GB
 apt install wget -y; bash <(wget -qO- raw.githubusercontent.com/playconect/Painel4g-2022/main/install/ubuinst3.sh)
 ```
 
-* 🐱‍💻 Instalação
-* ⚡ Painel WEB - PAINEL WEB ⚡ DB CONECTA 4g
-```
-apt install wget -y; bash <(wget -qO- raw.githubusercontent.com/playconect/Painel4g-2022/main/install/bancoconecta.sh)
-```
 
 * ♻️ Sincronização
 * ⚡ Painel WEB - PAINEL WEB ⚡ VERSÃO SEM BUG DE INVERTER DATA E LIMITE, COMPATIVEL COM ARM AARCH64!
