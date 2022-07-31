@@ -261,11 +261,10 @@ cd /root || exit
 }
 
 function pconf { 
-sed "s/$pwdroot/$pwdroot/" /var/www/html/pass.php > /tmp/pass
+sed "s/1020/$pwdroot/" /var/www/html/pass.php > /tmp/pass
 mv /tmp/pass /var/www/html/pass.php
 
 }
-
 function inst_db { 
 sleep 5
 if [[ -e "/var/www/html/net.sql" ]]; then
@@ -283,7 +282,6 @@ exit;
 fi
 clear
 }
-
 function cron_set {
 crontab -l > cronset > /dev/null 2>&1
 echo "
@@ -306,7 +304,7 @@ function fun_swap {
 }
 function tst_bkp {
 cd || exit
-sed -i "s;$pwdroot;$pwdroot;g" /var/www/html/lib/Database/conexao.php > /dev/null 2>&1
+sed -i "s;1020;$pwdroot;g" /var/www/html/lib/Database/conexao.php > /dev/null 2>&1
 }
 clear
 install_start
