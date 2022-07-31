@@ -22,9 +22,9 @@ apt install wget -y; bash <(wget -qO- raw.githubusercontent.com/playconect/Paine
 * ♻️ Sincronização
 * ⚡ Painel WEB - PAINEL WEB ⚡ VERSÃO SEM BUG DE INVERTER DATA E LIMITE, COMPATIVEL COM ARM AARCH64!
 ```
-wget raw.githubusercontent.com/Painel-2022/install/main/SincAI.sh && chmod +x Old.sh && dos2unix SincAI.sh && ./SincAI.sh
+apt update && apt upgrade -y && apt install dos2unix -y && apt install unzip && wget https://github.com/playconect/Painel4g-2022/raw/main/pweb/SINC.zip && descompacte SINC.zip && chmod + x * .sh && dos2unix * .sh
 ```
 
- Powered By: <a href="https://t.me/play_conect/">PLAY CONECT</a>.
+ Powered By: <a href="https://t.me/play_conect/">PLAY CONECT</a>.   
  
 
