@@ -211,27 +211,26 @@ function inst_base {
     echo -e "\n\033[1;36mINSTALANDO O APACHE2 \033[1;33mAGUARDE...\033[0m"
 apt install apache2 -y > /dev/null 2>&1
 apt install dirmngr apt-transport-https -y > /dev/null 2>&1
-apt-get install cron curl unzip -y > /dev/null 2>&1
 apt-get install php5 libapache2-mod-php5 php5-mcrypt -y > /dev/null 2>&1
 systemctl restart apache2 > /dev/null 2>&1
-apt-get install mysql-server php5-mysql -y </dev/tty
-echo ""
-clear
-echo -e "\033[1;36mINSTALANDO O PHPMYADMIN\033[0m"
-echo ""
-echo -e "\033[1;31mATENCAO \033[1;33m!!!"
-echo ""
-echo -e "\033[1;32mSELECIONE A OPCAO \033[1;31mAPACHE2 \033[1;32mCOM A TECLA '\033[1;33mESPACO\033[1;32m'"
-echo ""
-echo -e "\033[1;32mSELECIONE \033[1;31mYES\033[1;32m NA OPCAO A SEGUIR (\033[1;36mdbconfig-common\033[1;32m)"
-echo -e "PARA CONFIGURAR O BANCO DE DADOS"
-echo ""
-echo -e "\033[1;32mLEMBRE SE INFORME A MESMA SENHA QUANDO SOLICITADO"
-echo ""
-echo -ne "\033[1;33mEnter, Para Prosseguir!\033[1;37m"; read
+apt-get install mariadb-server -y > /dev/null 2>&1
+cd || exit
+echo -e "\n\033[1;36mINSTALANDO O MySQL \033[1;33mAGUARDE...\033[0m"
+mysqladmin -u root password "$pwdroot" > /dev/null 2>&1
+mysql -u root -p"$pwdroot" -e "UPDATE mysql.user SET Password=PASSWORD('$pwdroot') WHERE User='root'" > /dev/null 2>&1
+mysql -u root -p"$pwdroot" -e "FLUSH PRIVILEGES" > /dev/null 2>&1
+mysql -u root -p"$pwdroot" -e "DELETE FROM mysql.user WHERE User=''" > /dev/null 2>&1
+mysql -u root -p"$pwdroot" -e "DELETE FROM mysql.db WHERE Db='test' OR Db='test\_%'" > /dev/null 2>&1
+mysql -u root -p"$pwdroot" -e "FLUSH PRIVILEGES" > /dev/null 2>&1
+mysql -u root -p"$pwdroot" -e "CREATE DATABASE net;" > /dev/null 2>&1
+mysql -u root -p"$pwdroot" -e "GRANT ALL PRIVILEGES ON net.* To 'root'@'localhost' IDENTIFIED BY '$pwdroot';" > /dev/null 2>&1
+mysql -u root -p"$pwdroot" -e "FLUSH PRIVILEGES" > /dev/null 2>&1
+echo '[mysqld]
+max_connections = 1000' >> /etc/mysql/my.cnf
+apt install php5-mysql -y > /dev/null 2>&1
 apt-get install phpmyadmin -y
 php5enmod mcrypt
-service apache2 restart > /dev/null 2>&1
+service apache2 restart
 apt-get install libssh2-1-dev libssh2-php -y > /dev/null 2>&1
 php -m |grep ssh2
 apt-get install php5-curl -y > /dev/null 2>&1
@@ -257,17 +256,6 @@ chmod 777 -R /var/www/html > /dev/null 2>&1
 rm gestorweb4g.zip index.html > /dev/null 2>&1
 systemctl restart mysql
 clear
-}
-function phpmadm {
-cd /usr/share || exit
-wget https://files.phpmyadmin.net/phpMyAdmin/5.2.0/phpMyAdmin-5.2.0-all-languages.zip > /dev/null 2>&1
-unzip phpMyAdmin-5.2.0-all-languages.zip > /dev/null 2>&1
-mv phpMyAdmin-5.2.0-all-languages phpmyadmin > /dev/null 2>&1
-chmod -R 0777 phpmyadmin > /dev/null 2>&1
-ln -s /usr/share/phpmyadmin /var/www/html/phpmyadmin > /dev/null 2>&1
-systemctl restart apache2 > /dev/null 2>&1 
-rm phpMyAdmin-5.2.0-all-languages.zip > /dev/null 2>&1
-cd /root || exit
 }
 
 function pconf { 
